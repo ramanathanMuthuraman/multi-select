@@ -18,10 +18,10 @@ app.directive("list", ['category', function(category) {
         },
         template: '<input type="text" ng-model="stringofitems" class="input-text" />' + '<ul class="dropdown">' +
             '<li ng-show={{(filter=="true")}}><input type="text" class="search-text" ng-model="query" /></li>' +
-            '<li ng-repeat="item in types|filter:query"><a class="item-type" href="javascript:void(0)">' +
-            '<input ng-attr-type={{(multiple=="true")?"checkbox":"radio"}} ng-model="confirmed"' +
+            '<li ng-repeat="item in types|filter:query"><label for={{item}} class="item-type">' +
+            '<input id={{item}} ng-attr-type={{(multiple=="true")?"checkbox":"radio"}} ng-model="confirmed"' +
             ' name="controls" ng-checked="ischecked(item)"  ng-change="selectionToggle(confirmed,item)" />' +
-            '{{item}}</a></li></ul>',
+            '{{item}}</label></li></ul>',
         controller: function($scope) {
             $scope.confirmed = false;
             $scope.types = category.types;
